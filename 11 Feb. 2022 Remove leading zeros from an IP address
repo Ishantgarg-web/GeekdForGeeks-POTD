@@ -1,0 +1,53 @@
+class Solution
+{
+    public static String fun(String s)
+    {
+        String ans="";
+        boolean temp=true;
+        for (int i=0;i<s.length();i++)
+        {
+            if(s.charAt(i)=='0')
+            {
+                if(temp)
+                {
+                    continue;
+                }
+                else
+                {
+                    ans=ans+s.charAt(i);
+                    temp=false;
+                }
+            }
+            else
+            {
+                ans=ans+s.charAt(i);
+                temp=false;
+            }
+        }
+        if(ans.length()==0)
+        {
+            return "0";
+        }
+        return ans;
+    }
+    public String newIPAdd(String s)
+    {
+        // your code here
+        String ans="";
+        String temp="";
+        for (int i=0;i<s.length();i++)
+        {
+            if(s.charAt(i)=='.')
+            {
+                ans=ans+fun(temp)+".";
+                temp="";
+            }
+            else
+            {
+                temp=temp+s.charAt(i);
+            }
+        }
+        ans=ans+fun(temp);
+        return ans;
+    }
+}
