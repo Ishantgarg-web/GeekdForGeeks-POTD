@@ -1,0 +1,40 @@
+class Solution
+{
+    public ArrayList<Integer> largestValues(Node root)
+    {
+        //code here
+        ArrayList<Integer> al=new ArrayList<>();
+        // define max variable.
+        int max=Integer.MIN_VALUE;
+        // define queue
+        Queue<Node> q=new LinkedList<>();
+        // add root node and null node.
+        q.add(root);
+        q.add(null);
+        // create a while loop till q having size()>1
+        while(q.size()>1)
+        {
+            Node curr=q.poll();
+            if(curr==null)
+            {
+                al.add(max);
+                q.add(null);
+                max=Integer.MIN_VALUE;
+            }
+            else
+            {
+                max=(int)Math.max(max,curr.data);
+                if(curr.left!=null)
+                {
+                    q.add(curr.left);
+                }
+                if(curr.right!=null)
+                {
+                    q.add(curr.right);
+                }
+            }
+        }
+        al.add(max);
+        return al;
+    }
+}
